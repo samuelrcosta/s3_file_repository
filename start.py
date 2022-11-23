@@ -8,6 +8,7 @@ load_dotenv()
 
 from file_uploader.repository.file_repository import FileRepository
 from file_uploader.read import get_files
+from file_uploader.config import LIST_LIMIT
 
 
 if __name__ == "__main__":
@@ -16,7 +17,7 @@ if __name__ == "__main__":
     files = get_files()
     print("FOUND FILES", files)
 
-    for file in files:
+    for file in files[-LIST_LIMIT:]:
         print(f"Starting: {file}")
         try:
             repository.upload_file(file)
