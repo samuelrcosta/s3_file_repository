@@ -14,10 +14,10 @@ from file_uploader.config import LIST_LIMIT
 if __name__ == "__main__":
     repository = FileRepository()
 
-    files = get_files()
+    files = get_files()[-LIST_LIMIT:]
     print("FOUND FILES", files)
 
-    for file in files[-LIST_LIMIT:]:
+    for file in files:
         print(f"Starting: {file}")
         try:
             repository.upload_file(file)
