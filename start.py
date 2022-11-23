@@ -1,5 +1,6 @@
 import sys
 import os
+from datetime import datetime
 from dotenv import load_dotenv
 
 
@@ -15,14 +16,14 @@ if __name__ == "__main__":
     repository = FileRepository()
 
     files = get_files()[-LIST_LIMIT:]
-    print("FOUND FILES", files)
+    print(f"{datetime.now()} FOUND FILES", files)
 
     for file in files:
-        print(f"Starting: {file}")
+        print(f"{datetime.now()} Starting: {file}")
         try:
             repository.upload_file(file)
             os.remove(file)
-            print(f"Finish success: {file}")
+            print(f"{datetime.now()} Finish success: {file}")
         except Exception as err:
-            print(f"Error on: {file}", str(err))
+            print(f"{datetime.now()} Error on: {file}", str(err))
     
